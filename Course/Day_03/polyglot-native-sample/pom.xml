@@ -1,0 +1,103 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.example</groupId>
+  <artifactId>polyglot-native-sample</artifactId>
+  <version>1.0.0</version>
+  <name>polyglot-native-sample</name>
+  <description>Maven + GraalVM polyglot (Java host + Python + JavaScript) with native-image</description>
+
+  <properties>
+    <!-- Set this to your installed GraalVM Java version (21, 23, or 25). -->
+    <java.version>21</java.version>
+    <maven.compiler.release>${java.version}</maven.compiler.release>
+
+    <!-- GraalVM language artifacts version -->
+    <graalvm.version>24.2.0</graalvm.version>
+
+    <!-- Plugins -->
+    <native.maven.plugin.version>0.11.1</native.maven.plugin.version>
+  </properties>
+
+  <dependencies>
+    <!-- Core Polyglot API -->
+    <dependency>
+      <groupId>org.graalvm.polyglot</groupId>
+      <artifactId>polyglot</artifactId>
+      <version>${graalvm.version}</version>
+    </dependency>
+
+    <!-- JavaScript (GraalJS) -->
+    <dependency>
+      <groupId>org.graalvm.polyglot</groupId>
+      <artifactId>js</artifactId>
+      <version>${graalvm.version}</version>
+    </dependency>
+
+    <!-- Python (GraalPy) -->
+    <dependency>
+      <groupId>org.graalvm.polyglot</groupId>
+      <artifactId>python</artifactId>
+      <version>${graalvm.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Java compilation -->
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <release>${maven.compiler.release}</release>
+        </configuration>
+      </plugin>
+
+      <!-- Create a runnable JAR with a Main-Class -->
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.4.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>com.example.PolyglotMain</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+
+      <!-- GraalVM Native Image build -->
+      <plugin>
+        <groupId>org.graalvm.buildtools</groupId>
+        <artifactId>native-maven-plugin</artifactId>
+        <version>${native.maven.plugin.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <imageName>${project.artifactId}</imageName>
+          <mainClass>com.example.PolyglotMain</mainClass>
+          <fallback>false</fallback>
+          <verbose>true</verbose>
+        </configuration>
+        <executions>
+          <execution>
+            <id>build-native</id>
+            <goals>
+              <goal>compile-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>native</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
+    </profile>
+  </profiles>
+</project>
