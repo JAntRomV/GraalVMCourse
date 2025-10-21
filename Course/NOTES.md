@@ -55,3 +55,4 @@ pom.xml
 
  appcli:
  
+ graalpy --jvm --polyglot GraalPYDemoPolyglot2.py 
