@@ -10,6 +10,10 @@ $ ./helloworld
 $ graalpy
 $ graalpy ParImpar.py 
 
+$ export LLVM_TOOLCHAIN=$(lli --print-toolchain-path)
+$ $LLVM_TOOLCHAIN/clang hello.c -lgraalvm-llvm -o hello
+$ lli hello
+
 Day_02:
 $ java -version
 $ sdk list java
@@ -21,6 +25,12 @@ $ java PolyglotMain
 
 $ native-image --language:js --language:python PolyglotMain
 $ ./polyglotmain 
+
+$ $LLVM_TOOLCHAIN/clang polyglotpython.c -lgraalvm-llvm -o polyglotpython
+$ lli --polyglot polyglotpython
+
+$ $LLVM_TOOLCHAIN/clang polyglotjs.c -lgraalvm-llvm -o polyglotjs
+$ lli --polyglot polyglotjs
 
 Day_03:
 
