@@ -2,14 +2,20 @@ import org.graalvm.polyglot.*;
 
 public class PolyglotMain {
     public static void main(String[] args) {
-        String GRAALPY_HOME = "/home/jarv/.pyenv/versions/graalpy-24.1.0";
+        // String GRAALPY_HOME = "/home/jarv/.sdkman/candidates/java/22.3.r17-grl/languages/python/lib-graalpython";
+
+        // Engine eng = Engine.newBuilder()
+        //     .option("python.SysPrefix", GRAALPY_HOME)
+        //     .option("python.CoreHome", GRAALPY_HOME)
+        //     .option("python.StdLibHome", GRAALPY_HOME+"/lib/graalpy-38-native-x86_64-linux")
+        //     .option("python.Executable", GRAALPY_HOME)
+        //     .option("python.CAPI",  GRAALPY_HOME)
+        //     .option("log.python.level", "SEVERE")
+        //     .build();
 
         try (Context ctx = Context.newBuilder()
-                // .option("python.PythonHome", GRAALPY_HOME)
-                // .option("python.CoreHome",   GRAALPY_HOME + "/lib-graalpython")
-                // .option("python.StdLibHome", GRAALPY_HOME + "/lib-python/3")
-                // .option("python.SysPrefix",  GRAALPY_HOME)
                 .allowAllAccess(true) // para intercambio de objetos simples
+                //.engine(eng)
                 .build()) {
 
             Value pyResult = ctx.eval("python", "sum([i*i for i in range(1, 6)])"); // 1^2+...+5^2
