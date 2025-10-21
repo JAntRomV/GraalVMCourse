@@ -5,10 +5,6 @@ public class PolyglotMain {
         String GRAALPY_HOME = "/home/jarv/.pyenv/versions/graalpy-24.1.0";
 
         try (Context ctx = Context.newBuilder()
-                // .option("python.PythonHome", GRAALPY_HOME)
-                // .option("python.CoreHome",   GRAALPY_HOME + "/lib-graalpython")
-                // .option("python.StdLibHome", GRAALPY_HOME + "/lib-python/3")
-                // .option("python.SysPrefix",  GRAALPY_HOME)
                 .allowAllAccess(true) // para intercambio de objetos simples
                 .build()) {
 
