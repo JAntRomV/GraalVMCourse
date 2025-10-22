@@ -1,0 +1,6 @@
+org/example/IO$BytesIO.class
+org/example/App.class
+org/example/QRCode.class
+org/example/IO.class
+org/example/QRCode$PyPNGImage.class
+org/example/GraalPy.class
