@@ -63,6 +63,4 @@ pom.xml
    </profile>
  </profiles>
 
- appcli:
- 
- graalpy --jvm --polyglot GraalPYDemoPolyglot2.py 
+mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.5 -DgroupId=example -DartifactId=javase -Dpackage=org.example -Dversion=1.0-SNAPSHOT -DinteractiveMode=false
