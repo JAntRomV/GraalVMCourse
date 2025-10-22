@@ -36,6 +36,7 @@ Day_03:
 
 helloworld
 $ mvn archetype:generate -DgroupId=com.example -DartifactId=helloworld -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+$ java -cp target/helloworld-1.0-SNAPSHOT.jar com.example.App
 $ mvn -Pnative package
 
 pom.xml
