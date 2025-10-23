@@ -1,10 +1,10 @@
-package com.ito.cni.app;
+package com.ito.cni.curso;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AppApplicationTests {
+class CursoApplicationTests {
 
 	@Test
 	void contextLoads() {
