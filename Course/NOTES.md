@@ -84,3 +84,12 @@ micronaut
 sudo snap install postman
 postman &
 
+http://localhost:8080/api/usuarios
+http://localhost:8080/analyze?text=happy
+
+{
+  "id": "D09010313",
+  "nombre": "Antonio Romero",
+  "email": "antonio.romero@example.com"
+}
+
