@@ -1,0 +1,6 @@
+com/example/demo/DemoController.class
+com/example/demo/DemoApplication.class
+com/example/demo/SentimentIntensityAnalyzer.class
+com/example/demo/GraalPyContext.class
+com/example/demo/SentimentAnalysisService.class
+com/example/demo/SentimentAnalysisService$SentimentIntensityAnalyzerRuntimeHints.class
