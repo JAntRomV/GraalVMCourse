@@ -1,0 +1,2 @@
+[engine:junit-jupiter]/[class:com.example.demo.DemoApplicationTests]/[method:testIndex()]
+[engine:junit-jupiter]/[class:com.example.demo.DemoApplicationTests]/[method:testSentimentAnalysis()]
