@@ -65,3 +65,22 @@ pom.xml
  </profiles>
 
 mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.5 -DgroupId=example -DartifactId=javase -Dpackage=org.example -Dversion=1.0-SNAPSHOT -DinteractiveMode=false
+
+Day_04:
+
+$ sdk install micronaut
+$ mn --version
+
+spring
+
+./mvnw test
+./mvnw spring-boot:run
+
+micronaut
+
+./mvnw test
+./mvnw mn:run
+
+sudo snap install postman
+postman &
+
