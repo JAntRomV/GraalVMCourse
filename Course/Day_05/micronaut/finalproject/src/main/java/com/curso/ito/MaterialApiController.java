@@ -1,20 +1,31 @@
 package com.curso.ito;
 
 import org.graalvm.polyglot.*;
-import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Get;
+import io.micronaut.http.*;
+import io.micronaut.http.annotation.*;
+import io.micronaut.http.MediaType;
+import io.micronaut.views.View;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.net.URI;
 
-@Controller("/")
-public class HomeController {
+@Controller("/api/materiales")
+public class MaterialApiController{
 
     private final MaterialService materialService = new MaterialService();
     private List<Material> materials = materialService.seed();
 
-    @Get
-    public List<Material> Get() {
+    @Get(produces = MediaType.APPLICATION_JSON)
+    public List<Material> listar() {
         return materials;
+    }
+
+    // Agregar nuevo material (recibe JSON)
+    @Post(consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
+    public HttpResponse<Material> agregar(@Body Material material) {
+        materials.add(material);
+        return HttpResponse.created(material);
     }
 
     @Get("/python")
