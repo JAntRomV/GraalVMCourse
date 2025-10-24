@@ -122,4 +122,3 @@ $ git commit -m "Movidos cambios desde main a feature/nueva-funcionalidad"
 $ git checkout main
 $ git reset --hard origin/main
 
-$ git push -u origin nombre-apellido-finalproject
