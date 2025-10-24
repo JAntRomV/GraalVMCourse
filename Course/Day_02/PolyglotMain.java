@@ -2,7 +2,7 @@ import org.graalvm.polyglot.*;
 
 public class PolyglotMain {
     public static void main(String[] args) {
-        // String GRAALPY_HOME = "/home/jarv/.sdkman/candidates/java/22.3.r17-grl/languages/python/lib-graalpython";
+        // String GRAALPY_HOME = "/home/vboxuser/.sdkman/candidates/java/22.3.r17-grl/languages/python/lib-graalpython";
 
         // Engine eng = Engine.newBuilder()
         //     .option("python.SysPrefix", GRAALPY_HOME)
