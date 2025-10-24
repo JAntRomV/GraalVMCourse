@@ -1,6 +1,10 @@
 package com.curso.ito;
 import io.micronaut.serde.annotation.Serdeable;
+import io.micronaut.core.annotation.ReflectiveAccess;
+import io.micronaut.core.annotation.Introspected;
 
+@ReflectiveAccess
+@Introspected
 @Serdeable
 public class Material {
 
