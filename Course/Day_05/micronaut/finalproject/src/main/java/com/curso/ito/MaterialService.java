@@ -1,16 +1,26 @@
 package com.curso.ito;
 
+import jakarta.inject.Singleton;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+@Singleton
 public class MaterialService {
 
-    public List<Material> seed() {
-        List<Material> materiales = new ArrayList<>();
+   private final List<Material> materiales = new ArrayList<>();
 
-        materiales.add(new Material("Acero", 0, 21750,0));
-        materiales.add(new Material("Grava", 0, 5500,0));
-        materiales.add(new Material("Arena", 0, 1800,0));
-        return materiales;
+    public MaterialService() {
+        materiales.add(new Material("Acero", 12.5, 5000.75, 10));
+        materiales.add(new Material("Cobre", 8.2, 7200.50, 5));
+        materiales.add(new Material("Aluminio", 20.0, 3000.00, 15));
+    }
+
+    public List<Material> getAll() {
+        return Collections.unmodifiableList(materiales);
+    }
+
+    public void addMaterial(Material material) {
+        materiales.add(material);
     }
 }
