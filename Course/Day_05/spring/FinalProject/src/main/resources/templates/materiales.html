@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Materiales (Spring + JSON)</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    h2 { color: #333; }
+    .container { display: flex; gap: 40px; align-items: flex-start; }
+    table { border-collapse: collapse; width: 600px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f4f4f4; }
+    form { display: flex; flex-direction: column; width: 280px; gap: 10px; }
+    label { font-weight: bold; }
+    input { padding: 6px; border: 1px solid #ccc; border-radius: 4px; }
+    button { background-color: #4CAF50; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; }
+    button:hover { background-color: #45a049; }
+    #mensaje { margin-top: 10px; padding: 8px; border-radius: 5px; display: none; }
+    #mensaje.ok { background-color: #d4edda; color: #155724; }
+    #mensaje.error { background-color: #f8d7da; color: #721c24; }
+  </style>
+</head>
+<body>
+  <h2>Gestión de Materiales</h2>
+
+  <div class="container">
+    <!-- Formulario (enviado como JSON) -->
+    <div>
+      <h3>Agregar nuevo material</h3>
+      <form id="formMaterial">
+        <label for="tipo">Tipo:</label>
+        <input type="text" id="tipo" name="tipo" required>
+
+        <label for="toneladas">Toneladas:</label>
+        <input type="number" step="0.01" id="toneladas" name="toneladas" required>
+
+        <label for="precio">Precio:</label>
+        <input type="number" step="0.01" id="precio" name="precio" required>
+
+        <label for="descuento">Descuento (%):</label>
+        <input type="number" id="descuento" name="descuento" required>
+
+        <button type="submit">Guardar</button>
+      </form>
+
+      <div id="mensaje"></div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="table-container">
+      <h3>Lista de materiales</h3>
+      <table id="tablaMateriales">
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Toneladas</th>
+            <th>Precio</th>
+            <th>Descuento (%)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const tablaBody = document.querySelector("#tablaMateriales tbody");
+    const form = document.querySelector("#formMaterial");
+    const mensaje = document.querySelector("#mensaje");
+
+    function showMsg(text, ok = true) {
+      mensaje.textContent = text;
+      mensaje.className = ok ? "ok" : "error";
+      mensaje.style.display = "block";
+      setTimeout(() => mensaje.style.display = "none", 2500);
+    }
+
+    async function cargarMateriales() {
+      try {
+        const resp = await fetch("/api/materiales");
+        if (!resp.ok) throw new Error("Error al cargar materiales");
+        const data = await resp.json();
+        tablaBody.innerHTML = "";
+        data.forEach(m => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${m.tipo}</td>
+            <td>${m.toneladas}</td>
+            <td>${m.precio}</td>
+            <td>${m.descuento}</td>
+          `;
+          tablaBody.appendChild(tr);
+        });
+      } catch (e) {
+        console.error(e);
+        showMsg("⚠️ No se pudieron cargar los materiales", false);
+      }
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const material = {
+        tipo: form.tipo.value,
+        toneladas: parseFloat(form.toneladas.value),
+        precio: parseFloat(form.precio.value),
+        descuento: parseInt(form.descuento.value)
+      };
+      try {
+        const resp = await fetch("/api/materiales", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(material)
+        });
+        if (!resp.ok) throw new Error("Error al guardar");
+        showMsg("✅ Material agregado");
+        form.reset();
+        await cargarMateriales();
+      } catch (e) {
+        console.error(e);
+        showMsg("❌ No se pudo agregar el material", false);
+      }
+    });
+
+    cargarMateriales();
+  </script>
+</body>
+</html>
