@@ -93,3 +93,33 @@ http://localhost:8080/analyze?text=happy
   "email": "antonio.romero@example.com"
 }
 
+Day_05: 
+
+$ git status
+
+(opcional)
+$ git restore Course/Day_03/js/graaljs-webpack-guide 
+$ git restore Course/Day_03/python/graalpy-javase-guide 
+$ git restore Course/Day_03/python/graalpy-jbang-qrcode 
+$ git restore Course/Day_03/python/graalpy-native-extensions-guide 
+$ git restore Course/Day_03/js/graaljs-starter 
+$ git restore Course/Day_03/python/graalpy-starter
+
+$ git stash push -m "Cambios en main que moveré a nueva rama"
+
+$ git fetch origin
+$ git checkout develop
+$ git pull origin develop
+
+$ git branch nombre-apellido-finalproject
+$ git ch$eckout nombre-apellido-finalproject
+
+$ git stash pop
+
+$ git add .
+$ git commit -m "Movidos cambios desde main a feature/nueva-funcionalidad"
+
+$ git checkout main
+$ git reset --hard origin/main
+
+$ git push -u origin nombre-apellido-finalproject

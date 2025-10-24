@@ -49,6 +49,10 @@
       <version>25.0.0</version>
       <type>pom</type>
     </dependency>
+        <dependency>
+        <groupId>io.micronaut.views</groupId>
+        <artifactId>micronaut-views-thymeleaf</artifactId> <!-- ④ -->
+    </dependency>
     <dependency>
       <groupId>io.micronaut</groupId>
       <artifactId>micronaut-http-server-netty</artifactId>
