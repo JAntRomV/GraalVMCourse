@@ -14,13 +14,9 @@ import java.net.URI;
 @Controller("/materiales")
 public class MaterialesController {
 
-    private final MaterialService materialService = new MaterialService();
-    private List<Material> materials = materialService.seed();
-
     @Get
     @View("materiales")
     public void vista() {
         // no necesita modelo: todo se carga vía JavaScript (fetch)
     }
-
 }

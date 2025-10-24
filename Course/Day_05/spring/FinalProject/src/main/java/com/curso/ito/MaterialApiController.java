@@ -1,29 +1,31 @@
 package com.curso.ito;
 
 import org.graalvm.polyglot.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
-import java.util.ArrayList;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
-public class HomeController {
+@RequestMapping("/api/materiales")
+public class MaterialApiController {
 
-    private final MaterialService materialService = new MaterialService();
-    private List<Material> materials = materialService.seed();
+    private final MaterialService service;
+
+    public MaterialApiController(MaterialService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public List<Material> Get() {
-        return materials;
+    public List<Material> listar() {
+        return service.getAll();
+    }
+
+    @PostMapping
+    public ResponseEntity<Material> agregar(@RequestBody Material material) {
+        Material creado = service.add(material);
+        return ResponseEntity.created(URI.create("/api/materiales")).body(creado);
     }
 
     @GetMapping("/python")
