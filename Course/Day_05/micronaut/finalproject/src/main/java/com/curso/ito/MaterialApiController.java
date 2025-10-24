@@ -9,22 +9,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.net.URI;
+import jakarta.inject.Inject;
 
 @Controller("/api/materiales")
 public class MaterialApiController{
 
-    private final MaterialService materialService = new MaterialService();
-    private List<Material> materials = materialService.seed();
+    @Inject
+    MaterialService materialService;
 
     @Get(produces = MediaType.APPLICATION_JSON)
     public List<Material> listar() {
+        List<Material> materials = materialService.getAll();
         return materials;
     }
 
     // Agregar nuevo material (recibe JSON)
     @Post(consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
     public HttpResponse<Material> agregar(@Body Material material) {
-        materials.add(material);
+        materialService.addMaterial(material);
         return HttpResponse.created(material);
     }
 
