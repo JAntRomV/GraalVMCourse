@@ -130,12 +130,37 @@ public class MaterialApiController{
     }
 
     public Material calculaJS(Material mate){
-        
+        try (Context context = Context.create("js") 
+                            .allowAllAccess(true)
+                            .build()){
+            context.getBindings("js").putMember("material", mate);
+            Value v = context.eval("js",
+                "if (material.toneladas >= 15){" +
+                "   material.descuento = 8;" +
+                "   material.precioSinDes = material.precio*material.toneladas;" +
+                "   material.precioTotal = material.precioSinDes*0.92;" +
+                "} else {" +
+                "   material.descuento = 0;" +
+                "   material.precioSinDes = material.precio * material.toneladas;" +
+                "   material.precioTotal = material.precioSinDes;" +
+                "}"
+            );
+            mate = v.getMember("material").as(Material.class);
+        }
         return mate;
     }
 
     public Material calculaOtro(Material mate){
-        
+        if(mate.getTipo().equalsIgnoreCase("Acero")){
+            mate = calculaJava(mate);
+        } else if (mate.getTipo().equalsIgnoreCase("Grava")) {
+            mate = calculaPython(mate);
+        } else if (mate.getTipo().equalsIgnoreCase("Arena")) {
+            mate = calculaJS(mate);
+        } else {
+            mate.setPrecioSinDes(mate.getPrecio()*mate.getToneladas());
+            mate.setPrecioTotal(mate.getPrecioSinDes()*((100-mate.getDescuento())/100));
+        }
         return mate;
     }
 }
