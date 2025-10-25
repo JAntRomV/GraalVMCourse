@@ -9,7 +9,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV /home/jarv/Documentos/GraalVMCourses/graal-languages-demos/graalpy/graalpy-native-extensions-guide/target/classes/org.graalvm.python.vfs/venv
+setenv VIRTUAL_ENV /home/kevincs/GraalVMCourse/Course/Day_03/python/graalpy-native-extensions-guide/target/classes/org.graalvm.python.vfs/venv
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/"bin":$PATH"

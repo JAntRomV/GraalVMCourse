@@ -1,4 +1,5 @@
 /org.graalvm.python.vfs/
+/org.graalvm.python.vfs/fileslist.txt
 /org.graalvm.python.vfs/venv/
 /org.graalvm.python.vfs/venv/bin/
 /org.graalvm.python.vfs/venv/bin/Activate.ps1

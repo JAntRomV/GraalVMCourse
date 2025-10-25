@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/jarv/Documentos/GraalVMCourses/graal-languages-demos/graalpy/graalpy-native-extensions-guide/target/classes/org.graalvm.python.vfs/venv
+set -gx VIRTUAL_ENV /home/kevincs/GraalVMCourse/Course/Day_03/python/graalpy-native-extensions-guide/target/classes/org.graalvm.python.vfs/venv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

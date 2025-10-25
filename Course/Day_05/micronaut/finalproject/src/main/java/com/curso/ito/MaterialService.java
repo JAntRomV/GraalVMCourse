@@ -11,9 +11,9 @@ public class MaterialService {
    private final List<Material> materiales = new ArrayList<>();
 
     public MaterialService() {
-        materiales.add(new Material("Acero", 12.5, 5000.75, 10));
-        materiales.add(new Material("Cobre", 8.2, 7200.50, 5));
-        materiales.add(new Material("Aluminio", 20.0, 3000.00, 15));
+        materiales.add(new Material("Acero", 12.5, 5000.75));
+        materiales.add(new Material("Cobre", 8.2, 7200.50));
+        materiales.add(new Material("Aluminio", 20.0, 3000.00));
     }
 
     public List<Material> getAll() {

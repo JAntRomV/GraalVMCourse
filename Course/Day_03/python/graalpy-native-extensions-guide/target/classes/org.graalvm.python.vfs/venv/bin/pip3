@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' /home/jarv/Documentos/GraalVMCourses/graal-languages-demos/graalpy/graalpy-native-extensions-guide/target/classes/org.graalvm.python.vfs/venv/bin/graalpy "$0" "$@"
+'''exec' /home/kevincs/GraalVMCourse/Course/Day_03/python/graalpy-native-extensions-guide/target/classes/org.graalvm.python.vfs/venv/bin/graalpy "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re

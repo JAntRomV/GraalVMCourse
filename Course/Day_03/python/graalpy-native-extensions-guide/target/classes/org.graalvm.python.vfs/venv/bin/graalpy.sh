@@ -1,1 +1,1 @@
-/home/jarv/Documentos/GraalVMCourses/graal-languages-demos/graalpy/graalpy-native-extensions-guide/target/graalpy.sh
+/home/kevincs/GraalVMCourse/Course/Day_03/python/graalpy-native-extensions-guide/target/graalpy.sh

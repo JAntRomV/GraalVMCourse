@@ -12,12 +12,24 @@ public class Material {
     private double toneladas;
     private double precio;
     private int descuento;
+    private double precioSinDes;
+    private double precioTotal;
 
     // Constructor vacío
-    public Material() {
-    }
+    public Material() {}
 
     // Constructor con parámetros
+    public Material(String tipo, double toneladas) {
+        this.tipo = tipo;
+        this.toneladas = toneladas;
+    }
+
+    public Material(String tipo, double toneladas, double precio) {
+        this.tipo = tipo;
+        this.toneladas = toneladas;
+        this.precio = precio;
+    }
+
     public Material(String tipo, double toneladas, double precio, int descuento) {
         this.tipo = tipo;
         this.toneladas = toneladas;
@@ -56,5 +68,21 @@ public class Material {
 
     public void setDescuento(int descuento) {
         this.descuento = descuento;
+    }
+
+    public double getPrecioSinDes(){
+        return precioSinDes;
+    }
+
+    public void setPrecioSinDes(double precioSinDes){
+        this.precioSinDes = precioSinDes;
+    }
+
+    public double getPrecioTotal(){
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(double precioTotal){
+        this.precioTotal = precioTotal;
     }
 }
